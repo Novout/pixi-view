@@ -1,5 +1,5 @@
 <template>
-  <p>a</p>
+  <div>a</div>
 </template>
 
 <script lang="ts">
@@ -11,3 +11,14 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: var(--fullb);
+  width: 100%;
+}
+</style>

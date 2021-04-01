@@ -2,8 +2,8 @@
   <div>
     <img src="../../public/icon.png" alt="Pixi.js Logo">
     <section>
-      <home-to name="Criar Projeto" to="template" />
-      <home-to name="Carregar Projeto" to="load" />
+      <home-to name="Criar Projeto" to="template" icon="plus" />
+      <home-to name="Carregar Projeto" to="load" icon="file-upload" />
     </section>
   </div>
 </template>
