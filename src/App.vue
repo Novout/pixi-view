@@ -12,7 +12,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { remote } from 'electron';
-import ButtonBar from './material/ButtonBar.vue';
+import ButtonBar from '@/material/ButtonBar.vue';
 
 export default defineComponent({
   components: {
@@ -39,10 +39,12 @@ export default defineComponent({
   --bg-primary: #141414;
   --bg-primary-hover: #2f2f2f;
   --color-1: #e91e63;
+  --color-1-opacity: rgba(233, 30, 99, 0.15);
   --black: #000;
   --black-hover: #333;
   --white: #fff;
   --fullh: 100vh;
+  --fullb: calc(100vh - 25px);
   --bar: 25px;
 }
 

@@ -1,0 +1,43 @@
+<template>
+  <p @click.prevent="routeTo">{{ props.name }}</p>
+</template>
+
+<script lang="ts">
+import { useRouter } from 'vue-router';
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  props: ['name', 'to'],
+  setup(props) {
+    const router = useRouter();
+
+    const routeTo = () => {
+      router.push(`/${props.to}`);
+    }
+
+    return { props, routeTo }
+  },
+})
+</script>
+
+<style scoped>
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  color: var(--white);
+  border: 3px solid var(--color-1);
+  cursor: pointer;
+  width: 25vw;
+  margin: 1.5rem 0;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  text-shadow: 1px 1px 10px var(--color-1);
+}
+
+p:hover {
+  background: var(--color-1-opacity);
+  transform: translateX(10px);
+}
+</style>

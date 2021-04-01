@@ -1,13 +1,36 @@
 <template>
   <div>
-    <p>aa</p>
+    <img src="../../public/icon.png" alt="Pixi.js Logo">
+    <section>
+      <home-to name="Criar Projeto" to="template" />
+      <home-to name="Carregar Projeto" to="load" />
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import HomeTo from "@/components/home/HomeTo.vue";
 
 export default defineComponent({
+  components: {
+    HomeTo
+  },
   name: 'Home',
 });
 </script>
+
+<style scoped>
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: var(--fullb);
+  width: 100%;
+}
+
+div > section {
+  margin-top: 1rem;
+}
+</style>

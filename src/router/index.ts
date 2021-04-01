@@ -1,15 +1,20 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
   },
+  {
+    path: '/template',
+    name: 'Template',
+    component: () => import(/* webpackChunkName: "template" */ '../views/Template.vue')
+  }
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: process.env.IS_ELECTRON ? createWebHashHistory(process.env.BASE) : createWebHistory(process.env.BASE),
   routes,
 });
 
