@@ -7,9 +7,9 @@
   "scripts": {
     "build": "vue-cli-service electron:build",
     "lint": "vue-cli-service lint --fix",
-    "cz": "npm run log && git add . && git cz",
     "d": "vue-cli-service electron:serve",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "icon": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
   },
@@ -39,6 +39,7 @@
     "conventional-changelog-cli": "^2.0.28",
     "electron": "^11.0.0",
     "electron-devtools-installer": "^3.1.0",
+    "electron-icon-builder": "^2.0.1",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.0.0",

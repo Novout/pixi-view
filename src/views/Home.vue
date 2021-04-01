@@ -33,4 +33,8 @@ div {
 div > section {
   margin-top: 1rem;
 }
+
+div > img {
+  margin-left: 2rem;
+}
 </style>
