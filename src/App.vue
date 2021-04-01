@@ -5,7 +5,9 @@
       <button-bar @click="windowMinimize" name="-"/>
       <button-bar @click="windowClose" name="x"/>
     </nav>
-    <router-view/>
+    <transition name="tbase" mode="out-in" appear>
+      <router-view></router-view>
+    </transition>
   </main>
 </template>
 
@@ -76,5 +78,12 @@ export default defineComponent({
   margin-left: 1rem;
   font-family: 'Raleway Normal';
   font-size: 0.8rem;
+}
+
+.tbase-enter-active, .tbase-leave-active {
+  transition: opacity .5s;
+}
+.tbase-enter, .tbase-leave-to {
+  opacity: 0;
 }
 </style>
