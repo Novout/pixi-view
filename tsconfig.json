@@ -17,6 +17,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "_/*": [
+        "public/*"
       ]
     },
     "lib": [
@@ -34,6 +37,7 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/electron/*.ts"
   ]
 }

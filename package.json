@@ -1,9 +1,9 @@
 {
-  "name": "konstanta-engine",
+  "name": "pixi-view",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "yarn version && vue-cli-service electron:build",
+    "build": "vue-cli-service electron:build",
     "lint": "vue-cli-service lint --fix",
     "cz": "npm run log && git add . && git cz",
     "d": "vue-cli-service electron:serve",
@@ -11,7 +11,7 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
   },
-  "main": "background.ts",
+  "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.5",
     "electron-updater": "^4.3.8",
