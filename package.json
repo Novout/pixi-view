@@ -5,7 +5,7 @@
   "private": true,
   "description": "A interface for pixi.js development",
   "scripts": {
-    "build": "vue-cli-service electron:build",
+    "build": "yarn icon && vue-cli-service electron:build",
     "lint": "vue-cli-service lint --fix",
     "d": "vue-cli-service electron:serve",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
