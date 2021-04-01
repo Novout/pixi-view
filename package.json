@@ -1,19 +1,26 @@
 {
   "name": "konstanta-engine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "yarn version && vue-cli-service electron:build",
+    "lint": "vue-cli-service lint --fix",
+    "cz": "npm run log && git add . && git cz",
+    "d": "vue-cli-service electron:serve",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
   },
+  "main": "src/background.ts",
   "dependencies": {
     "core-js": "^3.6.5",
+    "electron-updater": "^4.3.8",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/electron-devtools-installer": "^2.2.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -25,14 +32,32 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "commitizen": "^4.0.3",
+    "commitlint": "^8.2.0",
+    "conventional-changelog-cli": "^2.0.28",
+    "electron": "^11.0.0",
+    "electron-devtools-installer": "^3.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.0.0",
+    "husky": "^3.0.9",
     "lint-staged": "^9.5.0",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-commitlint": "~1.0.12",
+    "vue-cli-plugin-electron-builder": "~2.0.0-rc.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/vue-cli-plugin-commitlint/lib/cz"
+    }
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
