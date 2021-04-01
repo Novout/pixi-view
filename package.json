@@ -1,11 +1,16 @@
 {
   "name": "pixi-view",
-  "author": "Novout",
+  "author": {
+    "name": "Novout",
+    "email": "gcnovout@gmail.com",
+    "url": "https://novout.vercel.app/"
+  },
   "version": "0.1.0",
   "private": true,
   "description": "A interface for pixi.js development",
   "scripts": {
     "build": "yarn icon && vue-cli-service electron:build",
+    "build:cross": "yarn build --linux deb --win nsis",
     "lint": "vue-cli-service lint --fix",
     "d": "vue-cli-service electron:serve",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
