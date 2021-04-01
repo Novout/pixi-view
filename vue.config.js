@@ -11,7 +11,7 @@ module.exports = {
     electronBuilder: {
       nodeIntegration: true,
       builderOptions: {
-        productName: `Konstanta Engine - ${pkg.version}`
+        productName: `Pixi View - ${pkg.version}`
         // publish: ['github']
       },
       mainProcessFile: "src/background.ts",

@@ -1,7 +1,9 @@
 {
   "name": "pixi-view",
+  "author": "Novout",
   "version": "0.1.0",
   "private": true,
+  "description": "A interface for pixi.js development",
   "scripts": {
     "build": "vue-cli-service electron:build",
     "lint": "vue-cli-service lint --fix",
