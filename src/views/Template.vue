@@ -16,7 +16,7 @@
         </section>
         <section class="menu">
           <router-link to="/">Menu Inicial</router-link>
-          <router-link to="/view">Criar</router-link>
+          <a @click="goView()">Criar</a>
         </section>
       </section>
     </section>
@@ -28,10 +28,12 @@ import TemplateOption from '@/components/template/TemplateOption.vue'
 import { defineComponent, reactive } from 'vue'
 import { remote } from 'electron'
 import { useRouter } from 'vue-router'
+import { useTemplate } from '@/use/template'
 
 export default defineComponent({
   components: { TemplateOption },
   setup() {
+    const router = useRouter();
     const data = reactive({
       project: "blank" as string,
       name: "blank-template" as string,
@@ -45,23 +47,35 @@ export default defineComponent({
         "blank": "blank-template",
         "base": "simple-template",
         "demo": "rpg-demo-template"
-      }[project] || "empty"
+      }[data.project] || ""
     }
 
     const openDialog = async () => {
-      const log = await remote.dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory' ]})
+      const log = await remote.dialog.showOpenDialog({ properties: [ 'openDirectory' ]})
 
       if(!log) return;
 
       data.path = log.filePaths[0];
     }
 
-    const goRoute = (value: string) => {
-      const router = useRouter();
-      router.push(value);
+    const goView = () => {
+      const template = useTemplate();
+
+      if(!data.name) return;
+
+      switch(data.project) {
+        case 'blank':
+          template.createBlankTemplate({ path: data.path, directory: data.name })
+          .then(() => {
+            router.push('/view');
+          })
+          .catch(() => {
+            console.error('directory exists!')
+          })
+      }
     }
 
-    return { data, switchProject, openDialog, goRoute }
+    return { data, switchProject, openDialog, goView }
   },
 })
 </script>

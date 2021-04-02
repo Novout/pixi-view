@@ -2,6 +2,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const { app } = require("electron").remote;
 const pkg = require('../../pixi.config');
+import { TemplateMontage } from "@/utils";
 
 module.exports = {
   JsonFileSync: (file: any) => JSON.parse(fs.readFileSync(path.join(__dirname, `./data/${file}`)), 'utf8' as any),
@@ -17,7 +18,7 @@ module.exports = {
       return JSON.parse(data);
     });
   },
-  PathWrite: (file: any, object: any) => {
+  PathStorageWrite: (file: any, object: any) => {
     const path_item = path.resolve(app.getPath("userData") + `${pkg.serializeRoamingPath}/${file}.json`);
     const path_full = path.resolve(app.getPath("userData") + `${pkg.serializeRoamingPath}`);
 
@@ -27,7 +28,7 @@ module.exports = {
 
     fs.writeFileSync(path_item, JSON.stringify(object), { encoding: 'utf8' });
   },
-  PathRead: (file: any, initialize = []) => {
+  PathStorageRead: (file: any, initialize = []) => {
     const path_item = path.resolve(app.getPath("userData") + `${pkg.serializeRoamingPath}/${file}.json`);
     const path_full = path.resolve(app.getPath("userData") + `${pkg.serializeRoamingPath}`);
 
@@ -41,16 +42,13 @@ module.exports = {
 
     return JSON.parse(fs.readFileSync(path_item, 'utf8'));
   },
+  PathExists: (path: string) => {
+    return fs.existsSync(path);
+  },
   CopyFolder: (origin: string, to: string): Promise<void> => {
     return fs.copy(origin, to)
   },
-  WriteFile(path: any) {
-    fs.writeFile(path, `
-    import test from 'test';
-    const foo = () => {
-      console.log('foo')
-    }
-    foo()
-    `, 'utf8', () => {});
+  WriteFile(item: TemplateMontage) {
+    fs.writeFileSync(item.path, item.content, 'utf8', () => {});
   }
 }
