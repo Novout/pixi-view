@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs-extra");
 const path = require("path");
 const { app } = require("electron").remote;
 const pkg = require('../../pixi.config');
@@ -40,5 +40,17 @@ module.exports = {
     }
 
     return JSON.parse(fs.readFileSync(path_item, 'utf8'));
+  },
+  CopyFolder: (origin: string, to: string): Promise<void> => {
+    return fs.copy(origin, to)
+  },
+  WriteFile(path: any) {
+    fs.writeFile(path, `
+    import test from 'test';
+    const foo = () => {
+      console.log('foo')
+    }
+    foo()
+    `, 'utf8', () => {});
   }
 }

@@ -15,7 +15,7 @@ module.exports = {
         // publish: ['github']
       },
       mainProcessFile: "src/background.ts",
-      preload: { fs: "src/electron/fs.ts" }
+      preload: { fs: "src/electron/fs.ts", sh: "src/electron/sh.ts" }
     },
   },
 };
