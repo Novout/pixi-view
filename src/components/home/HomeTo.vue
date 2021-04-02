@@ -13,11 +13,11 @@ export default defineComponent({
 
     const routeTo = () => {
       router.push(`/${props.to}`);
-    }
+    };
 
-    return { props, routeTo }
-  },
-})
+    return { props, routeTo };
+  }
+});
 </script>
 
 <style scoped>

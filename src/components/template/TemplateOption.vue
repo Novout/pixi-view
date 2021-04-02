@@ -1,19 +1,19 @@
 <template>
   <div>
-    <img :src="props.path" alt="A template project for choice" width="100">
+    <img :src="props.path" alt="A template project for choice" width="100" />
     <h2>{{ props.name }}</h2>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: ['path', 'name'],
   setup(props) {
-    return { props }
-  },
-})
+    return { props };
+  }
+});
 </script>
 
 <style scoped>

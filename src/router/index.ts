@@ -4,7 +4,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
   },
   {
     path: '/template',
@@ -19,8 +19,10 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: process.env.IS_ELECTRON ? createWebHashHistory(process.env.BASE) : createWebHistory(process.env.BASE),
-  routes,
+  history: process.env.IS_ELECTRON
+    ? createWebHashHistory(process.env.BASE)
+    : createWebHistory(process.env.BASE),
+  routes
 });
 
 export default router;

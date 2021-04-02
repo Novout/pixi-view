@@ -2,9 +2,21 @@
   <div class="base">
     <section class="container">
       <section class="choice">
-        <template-option @click="switchProject('blank')" :path="require('@/assets/images/icon-clean.png')" name="Blank Project" />
-        <template-option @click="switchProject('base')" :path="require('@/assets/images/icon-base.png')" name="Base Project" />
-        <template-option @click="switchProject('demo')" :path="require('@/assets/images/icon-demo.png')" name="Demo Project" />
+        <template-option
+          @click="switchProject('blank')"
+          :path="require('@/assets/images/icon-clean.png')"
+          name="Blank Project"
+        />
+        <template-option
+          @click="switchProject('base')"
+          :path="require('@/assets/images/icon-base.png')"
+          name="Base Project"
+        />
+        <template-option
+          @click="switchProject('demo')"
+          :path="require('@/assets/images/icon-demo.png')"
+          name="Demo Project"
+        />
       </section>
       <section class="options">
         <label for="snowpack">Name</label>
@@ -28,71 +40,75 @@
 </template>
 
 <script lang="ts">
-import TemplateOption from '@/components/template/TemplateOption.vue'
-import ErrorText from '@/material/text/ErrorText.vue'
-import { defineComponent, reactive } from 'vue'
-import { remote } from 'electron'
-import { useRouter } from 'vue-router'
-import { useTemplate } from '@/use/template'
+import TemplateOption from '@/components/template/TemplateOption.vue';
+import ErrorText from '@/material/text/ErrorText.vue';
+import { defineComponent, reactive } from 'vue';
+import { remote } from 'electron';
+import { useRouter } from 'vue-router';
+import { useTemplate } from '@/use/template';
 // @ts-ignore
-import { DeleteFolder } from '@/electron/fs'
+import { DeleteFolder } from '@/electron/fs';
 
 export default defineComponent({
   components: { TemplateOption, ErrorText },
   setup() {
     const router = useRouter();
     const data = reactive({
-      project: "blank" as string,
-      name: "blank-template" as string,
-      path: "C:/Program Files" as string
-    })
+      project: 'blank' as string,
+      name: 'blank-template' as string,
+      path: 'C:/Program Files' as string
+    });
 
     const error = reactive({
       exists: false,
       create: false
-    })
+    });
 
     const switchProject = (project: string) => {
       data.project = project;
-      // @ts-ignore
-      data.name = {
-        "blank": "blank-template",
-        "base": "simple-template",
-        "demo": "rpg-demo-template"
-      }[data.project] || ""
-    }
+
+      switch (data.project) {
+        case 'blank':
+          data.name = 'blank-template';
+        case 'base':
+          data.name = 'base-template';
+        case 'demo':
+          data.name = 'demo-template';
+      }
+    };
 
     const openDialog = async () => {
-      const log = await remote.dialog.showOpenDialog({ properties: [ 'openDirectory' ]})
+      const log = await remote.dialog.showOpenDialog({ properties: ['openDirectory'] });
 
-      if(!log) return;
+      if (!log) return;
 
       data.path = log.filePaths[0];
-    }
+    };
 
     const goView = () => {
       const template = useTemplate();
 
-      if(!data.name) return;
+      if (!data.name) return;
 
-      switch(data.project) {
+      switch (data.project) {
         case 'blank':
-          template.createBlankTemplate({ path: data.path, directory: data.name })
-          .then(() => {
-            router.push('/view');
-          })
-          .catch((e: any) => {
-            e.create ? error.create = true : error.create = false
-            e.exists ? error.exists = true : error.exists = false
+          template
+            .createBlankTemplate({ path: data.path, directory: data.name })
+            .then(() => {
+              router.push('/view');
+            })
+            .catch((e: any) => {
+              e.create ? (error.create = true) : (error.create = false);
+              e.exists ? (error.exists = true) : (error.exists = false);
 
-            if(!e.create && !e.exists) DeleteFolder(data.path)
-          })
+              if (!e.create && !e.exists) DeleteFolder(data.path);
+            });
       }
-    }
+    };
 
-    return { data, error, switchProject, openDialog, goView }
-  },
-})
+    return { data, error, switchProject, openDialog, goView };
+  }
+});
 </script>
 
 <style scoped>
@@ -108,8 +124,8 @@ export default defineComponent({
 .container {
   background: var(--bg-primary-hover);
   border-radius: 0.5rem;
-  box-shadow: 0 0 0px var(--white), 0 0 0px var(--white), 0 0 5px var(--color-1), 0 0 1px var(--color-1),
-    0 0 40px var(--color-1), 0 0 2px var(--color-1);
+  box-shadow: 0 0 0px var(--white), 0 0 0px var(--white), 0 0 5px var(--color-1),
+    0 0 1px var(--color-1), 0 0 40px var(--color-1), 0 0 2px var(--color-1);
 }
 
 .choice {
@@ -203,5 +219,4 @@ input:focus {
 .menu > a:hover {
   color: var(--black);
 }
-
 </style>

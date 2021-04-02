@@ -16,8 +16,8 @@ export const createBlankHTML = (): TemplateCreate => {
   <script type="module" src="/index.js"></script>
 </html>
 `
-  }
-}
+  };
+};
 
 export const createBlankPackage = (): TemplateCreate => {
   return {
@@ -51,8 +51,8 @@ export const createBlankPackage = (): TemplateCreate => {
   }
 }
 `
-  }
-}
+  };
+};
 
 export const createBlankIndex = (): TemplateCreate => {
   return {
@@ -94,8 +94,8 @@ if (import.meta.hot) {
   });
 }
 `
-  }
-}
+  };
+};
 
 export const createBlankSnowpack = (): TemplateCreate => {
   return {
@@ -106,8 +106,8 @@ export const createBlankSnowpack = (): TemplateCreate => {
   },
 };
 `
-  }
-}
+  };
+};
 
 export const createBlankReset = (): TemplateCreate => {
   return {
@@ -118,5 +118,5 @@ export const createBlankReset = (): TemplateCreate => {
   outline: 0;
 }
 `
-  }
-}
+  };
+};

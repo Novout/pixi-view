@@ -1,10 +1,10 @@
-import { defineStore } from "pinia"
+import { defineStore } from 'pinia';
 
 export const useConfigStore = defineStore({
   id: 'config',
   state: () => ({
-    lang: "en",
+    lang: 'en'
   }),
   getters: {},
-  actions: {},
-})
+  actions: {}
+});

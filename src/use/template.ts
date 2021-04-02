@@ -1,11 +1,17 @@
 import path from 'path';
 import fs from 'fs-extra';
-import { ContentPath } from "@/utils";
+import { ContentPath } from '@/utils';
 // @ts-ignore
 import { PathExists, WriteFile, DownloadAndSetImage, CreateFolder } from '@/electron/fs';
 // @ts-ignore
 import { installAndExecuteBuildInPackage, killLocalhost } from '@/electron/sh';
-import { createBlankHTML, createBlankPackage, createBlankIndex, createBlankSnowpack, createBlankReset } from "@/project/blank";
+import {
+  createBlankHTML,
+  createBlankPackage,
+  createBlankIndex,
+  createBlankSnowpack,
+  createBlankReset
+} from '@/project/blank';
 import { useContextStore } from '@/store/context';
 
 export const useTemplate = () => {
@@ -16,11 +22,17 @@ export const useTemplate = () => {
     context.$state.project.path = _path;
 
     return new Promise((resolve, reject) => {
-      if(!PathExists(_path)) {
+      if (!PathExists(_path)) {
         // kill possible process in port
         killLocalhost();
 
-        Promise.resolve(fs.mkdir(_path, (err: any) => { if (err) { return console.error(err);}}))
+        Promise.resolve(
+          fs.mkdir(_path, (err: any) => {
+            if (err) {
+              return console.error(err);
+            }
+          })
+        );
         // index.html
         const html = createBlankHTML();
         WriteFile({ path: path.join(_path, html.name), content: html.content });
@@ -42,18 +54,23 @@ export const useTemplate = () => {
         WriteFile({ path: path.join(_path, css.name), content: css.content });
 
         // images/
-        CreateFolder(path.join(_path, 'images'))
+        CreateFolder(path.join(_path, 'images'));
 
         // images/example.png
-        Promise.resolve(DownloadAndSetImage('https://i.imgur.com/wFkk3SZ.png', path.join(_path, 'images/example.png'))).then(() => {
+        Promise.resolve(
+          DownloadAndSetImage(
+            'https://i.imgur.com/wFkk3SZ.png',
+            path.join(_path, 'images/example.png')
+          )
+        ).then(() => {
           // execute build command in package.json
-          resolve(installAndExecuteBuildInPackage(_path, { yarn: false }))
+          resolve(installAndExecuteBuildInPackage(_path, { yarn: false }));
         });
       } else {
         reject({ exists: true });
       }
     });
-  }
+  };
 
   return { createBlankTemplate };
-}
+};
