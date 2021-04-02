@@ -3,3 +3,4 @@ src/background.ts
 src/main.ts
 vue.config.js
 node_modules
+src/template/**

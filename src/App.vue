@@ -5,9 +5,11 @@
       <button-bar @click="windowMinimize" name="-"/>
       <button-bar @click="windowClose" name="x"/>
     </nav>
-    <transition name="tbase" mode="out-in" appear>
-      <router-view></router-view>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="tbase" mode="out-in" appear>
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </main>
 </template>
 
@@ -39,7 +41,7 @@ export default defineComponent({
 <style>
 :root {
   --bg-primary: #141414;
-  --bg-primary-hover: #2f2f2f;
+  --bg-primary-hover: #1c1c1c;
   --color-1: #e91e63;
   --color-1-opacity: rgba(233, 30, 99, 0.15);
   --black: #000;
@@ -80,10 +82,14 @@ export default defineComponent({
   font-size: 0.8rem;
 }
 
-.tbase-enter-active, .tbase-leave-active {
-  transition: opacity .5s;
+.tbase-enter-active,
+.tbase-leave-active {
+  transition: opacity 0.3s ease;
 }
-.tbase-enter, .tbase-leave-to {
+
+
+.tbase-enter-from,
+.tbase-leave-to {
   opacity: 0;
 }
 </style>

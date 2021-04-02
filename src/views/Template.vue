@@ -1,19 +1,73 @@
 <template>
-  <div>a</div>
+  <div class="base">
+    <section class="container">
+      <section class="choice">
+        <template-option @click="switchProject('blank')" :path="require('@/assets/images/icon-clean.png')" name="Blank Project" />
+        <template-option @click="switchProject('base')" :path="require('@/assets/images/icon-base.png')" name="Base Project" />
+        <template-option @click="switchProject('demo')" :path="require('@/assets/images/icon-demo.png')" name="Demo Project" />
+      </section>
+      <section class="options">
+        <label for="snowpack">Name</label>
+        <input v-model="data.name" type="text" />
+        <label for="snowpack">Path for Project</label>
+        <section class="path">
+          <input class="input" v-model="data.path" type="text" />
+          <button @click="openDialog"><font-awesome-icon icon="folder-open" size="lg" /></button>
+        </section>
+        <section class="menu">
+          <router-link to="/">Menu Inicial</router-link>
+          <router-link to="/view">Criar</router-link>
+        </section>
+      </section>
+    </section>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import TemplateOption from '@/components/template/TemplateOption.vue'
+import { defineComponent, reactive } from 'vue'
+import { remote } from 'electron'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
+  components: { TemplateOption },
   setup() {
+    const data = reactive({
+      project: "blank" as string,
+      name: "blank-template" as string,
+      path: "C:/Program Files" as string
+    })
 
+    const switchProject = (project: string) => {
+      data.project = project;
+      // @ts-ignore
+      data.name = {
+        "blank": "blank-template",
+        "base": "simple-template",
+        "demo": "rpg-demo-template"
+      }[project] || "empty"
+    }
+
+    const openDialog = async () => {
+      const log = await remote.dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory' ]})
+
+      if(!log) return;
+
+      data.path = log.filePaths[0];
+    }
+
+    const goRoute = (value: string) => {
+      const router = useRouter();
+      router.push(value);
+    }
+
+    return { data, switchProject, openDialog, goRoute }
   },
 })
 </script>
 
 <style scoped>
-div {
+.base {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -21,4 +75,103 @@ div {
   min-height: var(--fullb);
   width: 100%;
 }
+
+.container {
+  background: var(--bg-primary-hover);
+  border-radius: 0.5rem;
+}
+
+.choice {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1rem;
+}
+
+.options {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.options > label {
+  font-family: 'Raleway Tiny';
+  color: var(--white);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.options > input {
+  font-size: 0.8rem;
+  background-color: var(--black-hover);
+  border: none;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1rem;
+  caret-color: var(--color-1);
+  color: var(--white);
+}
+
+.path {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--black-hover);
+}
+
+.path > button {
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.path > button > a {
+  background: none;
+}
+
+.input {
+  font-size: 0.8rem;
+  background-color: var(--black-hover);
+  border: none;
+  padding: 0.25rem 0.5rem;
+  flex-grow: 1;
+  caret-color: var(--color-1);
+  color: var(--white);
+}
+
+input:focus {
+  box-shadow: 0 0 1px #fff, 0 0 0px #fff, 0 0 5px var(--color-1), 0 0 5px var(--color-1),
+    0 0 40px var(--color-1), 0 0 5px var(--color-1);
+}
+
+.options > section > label {
+  color: var(--white);
+  font-family: 'Raleway Normal';
+  margin-right: 0.5rem;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 2rem 0 0.5rem 0;
+  background-color: var(--color-1);
+}
+
+.menu > a {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 9999px;
+  color: var(--white);
+  font-family: 'Poppins Light';
+  cursor: pointer;
+  transition: color 0.15s ease;
+  text-decoration: none;
+}
+
+.menu > a:hover {
+  color: var(--black);
+}
+
 </style>

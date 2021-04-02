@@ -5,5 +5,5 @@ export const createShortcuts = () => {
   globalShortcut.register('CmdOrCtrl+D', () => {
     (win as BrowserWindow).webContents.openDevTools();
   });
-  globalShortcut.register('CmdOrCtrl+R', () => {});
+  // globalShortcut.register('CmdOrCtrl+R', () => {});
 };
