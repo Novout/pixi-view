@@ -21,8 +21,4 @@
   background-color: var(--bg-primary) !important;
   border: none;
 }
-
-.splitpanes .splitpanes__splitter {
-  background-color: aqua;
-}
 </style>
