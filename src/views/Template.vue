@@ -79,6 +79,7 @@ export default defineComponent({
 .container {
   background: var(--bg-primary-hover);
   border-radius: 0.5rem;
+  box-shadow: 1px -1px 32px 0px rgba(0,0,0,0.5);
 }
 
 .choice {

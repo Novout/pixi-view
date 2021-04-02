@@ -10,6 +10,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/template',
     name: 'Template',
     component: () => import(/* webpackChunkName: "template" */ '../views/Template.vue')
+  },
+  {
+    path: '/view',
+    name: 'View',
+    component: () => import(/* webpackChunkName: "view" */ '../views/View.vue')
   }
 ];
 
