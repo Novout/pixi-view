@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia';
+// @ts-ignore
+import { PathStorageRead } from '@/electron/fs';
 
 export const useConfigStore = defineStore({
   id: 'config',
-  state: () => ({
-    lang: 'en'
-  }),
+  state: () =>
+    PathStorageRead('config', {
+      lang: 'en'
+    }),
   getters: {},
   actions: {}
 });

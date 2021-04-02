@@ -12,14 +12,10 @@ import {
   createBlankSnowpack,
   createBlankReset
 } from '@/project/blank';
-import { useContextStore } from '@/store/context';
 
 export const useTemplate = () => {
   const createBlankTemplate = (content: ContentPath): Promise<void> => {
     const _path = path.join(content.path, content.directory);
-
-    const context = useContextStore();
-    context.$state.project.path = _path;
 
     return new Promise((resolve, reject) => {
       if (!PathExists(_path)) {

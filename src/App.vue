@@ -14,15 +14,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onBeforeUnmount } from 'vue';
 import { remote } from 'electron';
+// @ts-ignore
+import { PathStorageWrite } from '@/electron/fs';
 import ButtonBar from '@/material/ButtonBar.vue';
+import { useConfigStore } from '@/store/config';
+import { useContextStore } from '@/store/context';
 
 export default defineComponent({
   components: {
     ButtonBar
   },
   setup() {
+    const config = useConfigStore();
+    const context = useContextStore();
+
+    onBeforeUnmount(async () => {
+      await PathStorageWrite('config', config.$state);
+      await PathStorageWrite('context', context.$state);
+    });
+
     const win = remote.getCurrentWindow();
 
     const windowMinimize = () => {
@@ -30,6 +42,8 @@ export default defineComponent({
     };
 
     const windowClose = () => {
+      PathStorageWrite('config', config.$state);
+      PathStorageWrite('context', context.$state);
       win.close();
     };
 

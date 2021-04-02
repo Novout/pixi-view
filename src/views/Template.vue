@@ -42,26 +42,33 @@
 <script lang="ts">
 import TemplateOption from '@/components/template/TemplateOption.vue';
 import ErrorText from '@/material/text/ErrorText.vue';
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, watch } from 'vue';
 import { remote } from 'electron';
 import { useRouter } from 'vue-router';
 import { useTemplate } from '@/use/template';
 // @ts-ignore
-import { DeleteFolder } from '@/electron/fs';
+import { DeleteFolder, PathStorageWrite } from '@/electron/fs';
+import { useContextStore } from '@/store/context';
 
 export default defineComponent({
   components: { TemplateOption, ErrorText },
   setup() {
+    const context = useContextStore();
     const router = useRouter();
     const data = reactive({
       project: 'blank' as string,
       name: 'blank-template' as string,
-      path: 'C:/Program Files' as string
+      path: context.$state.project.path as string
     });
 
     const error = reactive({
       exists: false,
       create: false
+    });
+
+    watch(data, (n, _prev) => {
+      context.$state.project.path = n.path;
+      PathStorageWrite('config', context.$state);
     });
 
     const switchProject = (project: string) => {

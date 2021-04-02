@@ -12,8 +12,8 @@
     "build": "yarn icon && vue-cli-service electron:build",
     "build:cross": "yarn build --linux deb --win nsis",
     "lint": "vue-cli-service lint --fix && pretty-quick",
-    "d": "vue-cli-service electron:serve",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "d": "pretty-quick && vue-cli-service electron:serve",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "icon": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
