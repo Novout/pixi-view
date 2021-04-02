@@ -11,8 +11,17 @@ export interface TemplateCreate {
   content: string
 }
 
-
 export interface TemplateMontage {
   path: string,
   content: string
+}
+
+export interface TemplateToPath {
+  origin: string,
+  to: string
+}
+
+export interface ExecuteOptions {
+  /* utilizing yarn, `false` is npm */
+  yarn?: boolean;
 }

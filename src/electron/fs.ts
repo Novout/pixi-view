@@ -1,8 +1,12 @@
 const fs = require("fs-extra");
+const https = require('https');
 const path = require("path");
+const rimraf = require("rimraf");
+const Stream = require('stream').Transform;
 const { app } = require("electron").remote;
 const pkg = require('../../pixi.config');
-import { TemplateMontage } from "@/utils";
+
+import { TemplateMontage, TemplateToPath } from "@/utils";
 
 module.exports = {
   JsonFileSync: (file: any) => JSON.parse(fs.readFileSync(path.join(__dirname, `./data/${file}`)), 'utf8' as any),
@@ -48,7 +52,36 @@ module.exports = {
   CopyFolder: (origin: string, to: string): Promise<void> => {
     return fs.copy(origin, to)
   },
-  WriteFile(item: TemplateMontage) {
+  WriteFile: (item: TemplateMontage) => {
     fs.writeFileSync(item.path, item.content, 'utf8', () => {});
+  },
+  CopyAndPaste: (path: TemplateToPath) => {
+    fs.readFile(path.origin, function (err: any, data: any) {
+      if (err) throw err;
+
+      fs.writeFile(path.to, data, function (err: any) { if (err) throw err; });
+  })},
+  DownloadAndSetImage: (url: string, path: string) => {
+    try {
+      https.request(url, (response: any) => {
+        const data = new Stream();
+
+        response.on('data', (chunk: any) => {
+          data.push(chunk);
+        });
+
+        response.on('end', () => {
+          fs.writeFileSync(path, data.read());
+        });
+      }).end();
+    } catch(e) {
+      console.error(e);
+    }
+  },
+  DeleteFolder: (path: string) => {
+    rimraf(path, () => {});
+  },
+  CreateFolder: (path: string) => {
+    fs.mkdir(path, (err: any) => { if (err) { return console.error(err);}});
   }
 }

@@ -29,6 +29,8 @@ import { defineComponent, reactive } from 'vue'
 import { remote } from 'electron'
 import { useRouter } from 'vue-router'
 import { useTemplate } from '@/use/template'
+// @ts-ignore
+import { DeleteFolder } from '@/electron/fs'
 
 export default defineComponent({
   components: { TemplateOption },
@@ -69,8 +71,9 @@ export default defineComponent({
           .then(() => {
             router.push('/view');
           })
-          .catch(() => {
-            console.error('directory exists!')
+          .catch((e: any) => {
+            console.log(e)
+            if(!e.create || !e.exists) DeleteFolder(data.path)
           })
       }
     }
