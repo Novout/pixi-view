@@ -1,4 +1,4 @@
-import './reset.css';
+import './assets/reset.css';
 
 import { createApp } from 'vue';
 import { library } from "@fortawesome/fontawesome-svg-core";
