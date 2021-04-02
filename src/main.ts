@@ -1,6 +1,7 @@
 import './assets/reset.css';
 
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlus, faFileUpload, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 //import { faComment } from "@fortawesome/free-regular-svg-icons";
@@ -10,7 +11,6 @@ import { Splitpanes, Pane } from 'splitpanes';
 
 import App from './App.vue';
 import router from './router';
-import store from './store';
 
 library.add(
   faPlus,
@@ -19,7 +19,8 @@ library.add(
 );
 
 const app = createApp(App);
-app.use(store);
+
+app.use(createPinia())
 app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("splitpanes", Splitpanes);

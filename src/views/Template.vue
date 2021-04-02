@@ -14,6 +14,10 @@
           <input class="input" v-model="data.path" type="text" />
           <button @click="openDialog"><font-awesome-icon icon="folder-open" size="lg" /></button>
         </section>
+        <section>
+          <error-text v-if="error.exists">File path exists!</error-text>
+          <error-text v-if="error.create">The directory could not be created!</error-text>
+        </section>
         <section class="menu">
           <router-link to="/">Menu Inicial</router-link>
           <a @click="goView()">Criar</a>
@@ -25,6 +29,7 @@
 
 <script lang="ts">
 import TemplateOption from '@/components/template/TemplateOption.vue'
+import ErrorText from '@/material/text/ErrorText.vue'
 import { defineComponent, reactive } from 'vue'
 import { remote } from 'electron'
 import { useRouter } from 'vue-router'
@@ -33,13 +38,18 @@ import { useTemplate } from '@/use/template'
 import { DeleteFolder } from '@/electron/fs'
 
 export default defineComponent({
-  components: { TemplateOption },
+  components: { TemplateOption, ErrorText },
   setup() {
     const router = useRouter();
     const data = reactive({
       project: "blank" as string,
       name: "blank-template" as string,
       path: "C:/Program Files" as string
+    })
+
+    const error = reactive({
+      exists: false,
+      create: false
     })
 
     const switchProject = (project: string) => {
@@ -72,13 +82,15 @@ export default defineComponent({
             router.push('/view');
           })
           .catch((e: any) => {
-            console.log(e)
-            if(!e.create || !e.exists) DeleteFolder(data.path)
+            e.create ? error.create = true : error.create = false
+            e.exists ? error.exists = true : error.exists = false
+
+            if(!e.create && !e.exists) DeleteFolder(data.path)
           })
       }
     }
 
-    return { data, switchProject, openDialog, goView }
+    return { data, error, switchProject, openDialog, goView }
   },
 })
 </script>
@@ -96,7 +108,8 @@ export default defineComponent({
 .container {
   background: var(--bg-primary-hover);
   border-radius: 0.5rem;
-  box-shadow: 1px -1px 32px 0px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0px var(--white), 0 0 0px var(--white), 0 0 5px var(--color-1), 0 0 1px var(--color-1),
+    0 0 40px var(--color-1), 0 0 2px var(--color-1);
 }
 
 .choice {
@@ -157,8 +170,7 @@ export default defineComponent({
 }
 
 input:focus {
-  box-shadow: 0 0 1px #fff, 0 0 0px #fff, 0 0 5px var(--color-1), 0 0 5px var(--color-1),
-    0 0 40px var(--color-1), 0 0 5px var(--color-1);
+  box-shadow: inset 0px 0px 0px 1px var(--white);
 }
 
 .options > section > label {

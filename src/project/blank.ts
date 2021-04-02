@@ -9,7 +9,8 @@ export const createBlankHTML = (): TemplateCreate => {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Blank Template" />
-    <title>Starter Snowpack App</title>
+    <link rel="stylesheet" href="reset.css">
+    <title>Pixi View Blank Template</title>
   </head>
   <body></body>
   <script type="module" src="/index.js"></script>
@@ -58,8 +59,20 @@ export const createBlankIndex = (): TemplateCreate => {
     name: 'index.js',
     content: `import * as PIXI from 'pixi.js';
 
-const app = new PIXI.Application();
+PIXI.utils.skipHello();
+
+const app = new PIXI.Application({
+  width: window.innerWidth,
+  height: window.innerHeight,
+  antialias: true,
+  autoResize: true,
+});
+
 document.body.appendChild(app.view);
+
+window.addEventListener('resize', () => {
+  app.renderer.resize(window.innerWidth, window.innerHeight);
+});
 
 app.loader.add('example', 'images/example.png').load((loader, resources) => {
 
@@ -67,11 +80,19 @@ app.loader.add('example', 'images/example.png').load((loader, resources) => {
 
   sprite.x = 50;
   sprite.y = 50;
+  sprite.width = 150;
+  sprite.height = 150;
 
   app.stage.addChild(sprite);
 
   app.ticker.add(() => {});
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({module}) => {
+    // Accept the module, apply it into your application.
+  });
+}
 `
   }
 }
@@ -79,6 +100,23 @@ app.loader.add('example', 'images/example.png').load((loader, resources) => {
 export const createBlankSnowpack = (): TemplateCreate => {
   return {
     name: 'snowpack.config.js',
-    content: ``
+    content: `module.exports = {
+  devOptions: {
+    port: 4000
+  },
+};
+`
+  }
+}
+
+export const createBlankReset = (): TemplateCreate => {
+  return {
+    name: 'reset.css',
+    content: `* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+}
+`
   }
 }

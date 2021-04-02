@@ -23,12 +23,13 @@
     "core-js": "^3.6.5",
     "electron-updater": "^4.3.8",
     "fs-extra": "^9.1.0",
+    "iframe-resizer": "^4.3.1",
+    "pinia": "^2.0.0-alpha.10",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
     "splitpanes": "^3.0.4",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",

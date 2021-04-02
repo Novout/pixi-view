@@ -44,6 +44,7 @@ export default defineComponent({
   --bg-primary-hover: #1c1c1c;
   --color-1: #e91e63;
   --color-1-opacity: rgba(233, 30, 99, 0.15);
+  --color-error: #D50000;
   --black: #000;
   --black-hover: #333;
   --white: #fff;

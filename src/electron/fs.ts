@@ -61,9 +61,9 @@ module.exports = {
 
       fs.writeFile(path.to, data, function (err: any) { if (err) throw err; });
   })},
-  DownloadAndSetImage: (url: string, path: string) => {
+  DownloadAndSetImage: async (url: string, path: string) => {
     try {
-      https.request(url, (response: any) => {
+      await https.request(url, (response: any) => {
         const data = new Stream();
 
         response.on('data', (chunk: any) => {

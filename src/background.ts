@@ -3,6 +3,8 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import { autoUpdater } from "electron-updater";
 import { createShortcuts } from '@/electron/shortcuts';
+// @ts-ignore
+import { killLocalhost } from '@/electron/sh';
 import { Maybe } from './utils';
 
 const path = require('path');
@@ -45,6 +47,7 @@ const createWindow = async () => {
   }
 
   win.on('closed', () => {
+    killLocalhost();
     win = null;
   });
 };
