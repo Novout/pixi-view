@@ -195,7 +195,7 @@ export default defineComponent({
 }
 .default-theme.splitpanes--vertical > .splitpanes__splitter,
 .default-theme .splitpanes--vertical > .splitpanes__splitter {
-  width: 4px;
+  width: 5px;
   border-left: 1px solid var(--black-hover);
   margin-left: -1px;
 }
@@ -218,7 +218,7 @@ export default defineComponent({
 }
 .default-theme.splitpanes--horizontal > .splitpanes__splitter,
 .default-theme .splitpanes--horizontal > .splitpanes__splitter {
-  height: 4px;
+  height: 5px;
   border-top: 1px solid var(--black-hover);
   margin-top: -1px;
 }
@@ -238,5 +238,25 @@ export default defineComponent({
 .default-theme.splitpanes--horizontal > .splitpanes__splitter:after,
 .default-theme .splitpanes--horizontal > .splitpanes__splitter:after {
   margin-top: 1px;
+}
+.splitpanes__splitter:hover:before {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+.splitpanes__splitter:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+.splitpanes--vertical > .splitpanes__splitter:before {
+  left: -15px;
+  right: -15px;
+}
+.splitpanes--horizontal > .splitpanes__splitter:before {
+  top: -15px;
+  bottom: -15px;
 }
 </style>

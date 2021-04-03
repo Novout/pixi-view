@@ -4,6 +4,7 @@
     <section>
       <home-to :name="t('home.create')" to="template" icon="plus" />
       <home-to :name="t('home.load')" to="load" icon="file-upload" />
+      <router-link to="/view">aaa</router-link>
     </section>
   </div>
 </template>
