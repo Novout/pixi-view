@@ -1,7 +1,9 @@
 <template>
   <main class="base">
     <nav class="bar drag">
-      <h1 class="title">Pixi View v6</h1>
+      <img :src="require('@/assets/images/icon-bar.png')" />
+      <router-link class="no-drag" to="/">Home</router-link>
+      <router-link class="no-drag" to="/view">View</router-link>
       <button-bar @click="windowMinimize" name="-" />
       <button-bar @click="windowClose" name="x" />
     </nav>
@@ -73,6 +75,11 @@ export default defineComponent({
   align-items: center;
   height: var(--bar);
   background: var(--color-1);
+}
+
+.bar > img {
+  margin-right: auto;
+  margin-left: 10px;
 }
 
 .drag {

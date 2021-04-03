@@ -1,10 +1,23 @@
 <template>
   <div>
+    <section class="lang">
+      <p
+        @click="switchLanguage('en')"
+        :style="{ borderBottom: locale === 'en' ? '1px solid var(--color-1)' : '' }"
+      >
+        {{ t('home.lang.en') }}
+      </p>
+      <p
+        @click="switchLanguage('pt_BR')"
+        :style="{ borderBottom: locale === 'pt_BR' ? '1px solid var(--color-1)' : '' }"
+      >
+        {{ t('home.lang.pt_BR') }}
+      </p>
+    </section>
     <img src="../../public/icon.png" alt="Pixi.js Logo" />
     <section>
       <home-to :name="t('home.create')" to="template" icon="plus" />
       <home-to :name="t('home.load')" to="load" icon="file-upload" />
-      <router-link to="/view">aaa</router-link>
     </section>
   </div>
 </template>
@@ -20,13 +33,34 @@ export default defineComponent({
   },
   name: 'Home',
   setup() {
-    const { t } = useI18n();
-    return { t };
+    let { t, locale } = useI18n();
+
+    const switchLanguage = (lang: string) => {
+      locale.value = lang;
+    };
+
+    return { t, locale, switchLanguage };
   }
 });
 </script>
 
 <style scoped>
+.lang {
+  display: flex;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  padding: 1rem;
+}
+
+.lang > p {
+  margin: 0 1rem;
+  color: var(--white);
+  font-family: 'Poppins Light';
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
 div {
   display: flex;
   flex-direction: column;

@@ -1,7 +1,11 @@
 export default {
   home: {
     create: 'Criar Projeto',
-    load: 'Carregar Projeto'
+    load: 'Carregar Projeto',
+    lang: {
+      pt_BR: 'Português do Brasil',
+      en: 'English'
+    }
   },
   template: {
     type: {

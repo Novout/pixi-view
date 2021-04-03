@@ -37,6 +37,7 @@ div > img {
 
 div > h2 {
   color: var(--white);
-  font-family: 'Poppins Light';
+  font-family: 'Raleway Tiny';
+  margin-top: 1rem;
 }
 </style>

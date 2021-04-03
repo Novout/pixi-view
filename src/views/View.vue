@@ -4,7 +4,6 @@
       <splitpanes horizontal>
         <pane id="view-frame"
           ><iframe
-            @change="test"
             id="view"
             width="100%"
             height="100%"
@@ -15,22 +14,15 @@
         <pane size="20">4</pane>
       </splitpanes>
     </pane>
-    <pane size="30"><router-link to="/">Home</router-link></pane>
+    <pane size="30"></pane>
   </splitpanes>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  setup() {
-    const test = () => {
-      const iframe = document.getElementById('view') as HTMLIFrameElement;
-      iframe.src = iframe.src;
-    };
-
-    return { test };
-  }
+  setup() {}
 });
 </script>
 

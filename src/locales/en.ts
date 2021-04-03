@@ -1,7 +1,11 @@
 export default {
   home: {
     create: 'Create Project',
-    load: 'Load Project'
+    load: 'Load Project',
+    lang: {
+      pt_BR: 'Português do Brasil',
+      en: 'English'
+    }
   },
   template: {
     type: {
