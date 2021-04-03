@@ -5,34 +5,34 @@
         <template-option
           @click="switchProject('blank')"
           :path="require('@/assets/images/icon-clean.png')"
-          name="Blank Project"
+          :name="t('template.type.blank')"
         />
         <template-option
           @click="switchProject('base')"
           :path="require('@/assets/images/icon-base.png')"
-          name="Base Project"
+          :name="t('template.type.base')"
         />
         <template-option
           @click="switchProject('demo')"
           :path="require('@/assets/images/icon-demo.png')"
-          name="Demo Project"
+          :name="t('template.type.demo')"
         />
       </section>
       <section class="options">
-        <label for="snowpack">Name</label>
+        <label for="snowpack">{{ t('template.options.name') }}</label>
         <input v-model="data.name" type="text" />
-        <label for="snowpack">Path for Project</label>
+        <label for="snowpack">{{ t('template.options.path') }}</label>
         <section class="path">
           <input class="input" v-model="data.path" type="text" />
           <button @click="openDialog"><font-awesome-icon icon="folder-open" size="lg" /></button>
         </section>
         <section>
-          <error-text v-if="error.exists">File path exists!</error-text>
-          <error-text v-if="error.create">The directory could not be created!</error-text>
+          <error-text v-if="error.exists">{{ t('template.error.exists') }}</error-text>
+          <error-text v-if="error.create">{{ t('template.error.create') }}</error-text>
         </section>
         <section class="menu">
-          <router-link to="/">Menu Inicial</router-link>
-          <a @click="goView()">Criar</a>
+          <router-link to="/">{{ t('template.menu.initial') }}</router-link>
+          <a @click="goView()">{{ t('template.menu.create') }}</a>
         </section>
       </section>
     </section>
@@ -45,6 +45,7 @@ import ErrorText from '@/material/text/ErrorText.vue';
 import { defineComponent, reactive, watch } from 'vue';
 import { remote } from 'electron';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { useTemplate } from '@/use/template';
 // @ts-ignore
 import { DeleteFolder, PathStorageWrite } from '@/electron/fs';
@@ -53,6 +54,7 @@ import { useContextStore } from '@/store/context';
 export default defineComponent({
   components: { TemplateOption, ErrorText },
   setup() {
+    const { t } = useI18n();
     const context = useContextStore();
     const router = useRouter();
     const data = reactive({
@@ -74,13 +76,16 @@ export default defineComponent({
     const switchProject = (project: string) => {
       data.project = project;
 
-      switch (data.project) {
+      switch (project) {
         case 'blank':
-          data.name = 'blank-template';
+          data.name = t('template.typeName.blank');
+          break;
         case 'base':
-          data.name = 'base-template';
+          data.name = t('template.typeName.base');
+          break;
         case 'demo':
-          data.name = 'demo-template';
+          data.name = t('template.typeName.demo');
+          break;
       }
     };
 
@@ -113,7 +118,7 @@ export default defineComponent({
       }
     };
 
-    return { data, error, switchProject, openDialog, goView };
+    return { t, data, error, switchProject, openDialog, goView };
   }
 });
 </script>
@@ -151,6 +156,7 @@ export default defineComponent({
   color: var(--white);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .options > input {
