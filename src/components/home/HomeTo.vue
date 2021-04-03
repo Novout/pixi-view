@@ -26,14 +26,14 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem;
-  color: var(--white);
+  color: var(--text-primary);
   border: 3px solid var(--color-1);
   cursor: pointer;
   width: 25vw;
   margin: 1.5rem 0;
   border-radius: 9999px;
   transition: background 0.2s ease;
-  text-shadow: 1px 1px 10px var(--color-1);
+  text-shadow: 1px 1px 10px var(--text-shadow);
 }
 
 p:hover {

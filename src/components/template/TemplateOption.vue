@@ -36,7 +36,7 @@ div > img {
 }
 
 div > h2 {
-  color: var(--white);
+  color: var(--text-primary);
   font-family: 'Raleway Tiny';
   margin-top: 1rem;
 }

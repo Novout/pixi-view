@@ -56,8 +56,26 @@ export default defineComponent({
 
 <style>
 :root {
+  --bg-primary: #f2f2f2;
+  --bg-primary-hover: #d6d6d6;
+  --text-primary: #000;
+  --text-shadow: rgb(174, 174, 174);
+  --color-1: #e91e63;
+  --color-1-opacity: rgba(233, 30, 99, 0.15);
+  --color-error: #d50000;
+  --black: #000;
+  --black-hover: #333;
+  --white: #fff;
+  --fullh: 100vh;
+  --fullb: calc(100vh - 25px);
+  --bar: 25px;
+}
+
+:root .dark {
   --bg-primary: #141414;
   --bg-primary-hover: #1c1c1c;
+  --text-primary: #eee;
+  --text-shadow: #e91e63;
   --color-1: #e91e63;
   --color-1-opacity: rgba(233, 30, 99, 0.15);
   --color-error: #d50000;

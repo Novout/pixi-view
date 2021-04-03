@@ -6,7 +6,8 @@ export const useConfigStore = defineStore({
   id: 'config',
   state: () =>
     PathStorageRead('config', {
-      lang: 'en'
+      lang: 'en',
+      theme: 'dark'
     }),
   getters: {},
   actions: {}

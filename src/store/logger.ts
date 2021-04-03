@@ -13,7 +13,7 @@ export const useLoggerStore = defineStore({
   }),
   getters: {},
   actions: {
-    emit(content: string, color: string = 'clean', type: string = 'view') {
+    emit(content: string, color = 'clean', type = 'view') {
       let _content: Maybe<string>;
       let _color: Maybe<string>;
 

@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div class="home">
+    <font-awesome-icon
+      @click="theme === 'dark' ? (theme = 'light') : (theme = 'dark')"
+      icon="sun"
+      size="2x"
+    />
     <section class="lang">
       <p
         @click="switchLanguage('en')"
@@ -23,8 +28,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useConfigStore } from '@/store/config';
+// @ts-ignore
+import { PathStorageWrite, PathStorageRead } from '@/electron/fs';
 import HomeTo from '@/components/home/HomeTo.vue';
 
 export default defineComponent({
@@ -34,12 +42,34 @@ export default defineComponent({
   name: 'Home',
   setup() {
     let { t, locale } = useI18n();
+    const config = useConfigStore();
+
+    const theme = ref(config.theme);
 
     const switchLanguage = (lang: string) => {
       locale.value = lang;
     };
 
-    return { t, locale, switchLanguage };
+    const switchTheme = (_theme: string) => {
+      _theme === 'dark'
+        ? // @ts-ignore
+          document.querySelector('#app').classList.add('dark')
+        : // @ts-ignore
+          document.querySelector('#app').classList.remove('dark');
+
+      config.theme = _theme;
+    };
+
+    onMounted(() => {
+      switchTheme(theme.value);
+    });
+
+    watch(theme, (_theme: string) => {
+      switchTheme(_theme);
+      PathStorageWrite('config', config.$state);
+    });
+
+    return { t, locale, theme, switchLanguage };
   }
 });
 </script>
@@ -55,13 +85,14 @@ export default defineComponent({
 
 .lang > p {
   margin: 0 1rem;
-  color: var(--white);
+  color: var(--text-primary);
   font-family: 'Poppins Light';
   cursor: pointer;
   font-size: 0.9rem;
+  text-decoration: none;
 }
 
-div {
+.home {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -70,11 +101,20 @@ div {
   width: 100%;
 }
 
-div > section {
+.home > section {
   margin-top: 1rem;
 }
 
-div > img {
+.home > img {
+  pointer-events: none;
   margin-left: 2rem;
+}
+
+.home > svg {
+  position: absolute;
+  left: 1rem;
+  top: calc(2rem + 20px);
+  cursor: pointer;
+  color: var(--text-primary);
 }
 </style>

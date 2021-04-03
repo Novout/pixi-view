@@ -3,7 +3,7 @@ import './assets/reset.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faFileUpload, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faFileUpload, faFolderOpen, faSun } from '@fortawesome/free-solid-svg-icons';
 //import { faComment } from "@fortawesome/free-regular-svg-icons";
 //import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -13,7 +13,7 @@ import App from './App.vue';
 import router from './router';
 import i18n from './locales';
 
-library.add(faPlus, faFileUpload, faFolderOpen);
+library.add(faPlus, faFileUpload, faFolderOpen, faSun);
 
 const app = createApp(App);
 

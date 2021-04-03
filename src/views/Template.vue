@@ -136,7 +136,7 @@ export default defineComponent({
 .container {
   background: var(--bg-primary-hover);
   border-radius: 0.5rem;
-  box-shadow: 0 0 0px var(--white), 0 0 0px var(--white), 0 0 5px var(--color-1),
+  box-shadow: 0 0 0px var(--text-primary), 0 0 0px var(--text-primary), 0 0 5px var(--color-1),
     0 0 1px var(--color-1), 0 0 40px var(--color-1), 0 0 2px var(--color-1);
 }
 
@@ -153,7 +153,7 @@ export default defineComponent({
 
 .options > label {
   font-family: 'Raleway Tiny';
-  color: var(--white);
+  color: var(--text-primary);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
@@ -161,25 +161,25 @@ export default defineComponent({
 
 .options > input {
   font-size: 0.8rem;
-  background-color: var(--black-hover);
+  background-color: var(--bg-primary-hover);
   border: none;
   padding: 0.25rem 0.5rem;
   margin-bottom: 1rem;
   caret-color: var(--color-1);
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .path {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--black-hover);
+  background: var(--bg-primary-hover);
 }
 
 .path > button {
   background: none;
   border: none;
-  color: var(--white);
+  color: var(--text-primary);
   cursor: pointer;
   margin-right: 0.5rem;
 }
@@ -190,20 +190,20 @@ export default defineComponent({
 
 .input {
   font-size: 0.8rem;
-  background-color: var(--black-hover);
+  background-color: var(--bg-primary-hover);
   border: none;
   padding: 0.25rem 0.5rem;
   flex-grow: 1;
   caret-color: var(--color-1);
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 input:focus {
-  box-shadow: inset 0px 0px 0px 1px var(--white);
+  box-shadow: inset 0px 0px 0px 1px var(--text-primary);
 }
 
 .options > section > label {
-  color: var(--white);
+  color: var(--text-primary);
   font-family: 'Raleway Normal';
   margin-right: 0.5rem;
 }
@@ -222,7 +222,7 @@ input:focus {
   padding: 0.5rem;
   margin: 0 0.5rem;
   border-radius: 9999px;
-  color: var(--white);
+  color: var(--text-primary);
   font-family: 'Poppins Light';
   cursor: pointer;
   transition: color 0.15s ease;
@@ -230,6 +230,6 @@ input:focus {
 }
 
 .menu > a:hover {
-  color: var(--black);
+  color: var(--text-primary);
 }
 </style>
