@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="props.path" alt="A template project for choice" width="100" />
+    <img :src="props.path" alt="A template project for choice" width="100" loading="lazy" />
     <h2>{{ props.name }}</h2>
   </div>
 </template>

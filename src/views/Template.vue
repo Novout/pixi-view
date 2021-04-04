@@ -230,6 +230,6 @@ input:focus {
 }
 
 .menu > a:hover {
-  color: var(--text-primary);
+  color: var(--bg-primary);
 }
 </style>

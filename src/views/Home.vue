@@ -19,7 +19,7 @@
         {{ t('home.lang.pt_BR') }}
       </p>
     </section>
-    <img src="../../public/icon.png" alt="Pixi.js Logo" />
+    <img src="../../public/icon.png" alt="Pixi.js Logo" loading="lazy" />
     <section>
       <home-to :name="t('home.create')" to="template" icon="plus" />
       <home-to :name="t('home.load')" to="load" icon="file-upload" />
