@@ -12,6 +12,7 @@ import {
   createBlankSnowpack,
   createBlankReset
 } from '@/project/blank';
+import { createPixiViewConfig } from '@/project/utils';
 
 export const useTemplate = () => {
   const createBlankTemplate = (content: ContentPath): Promise<void> => {
@@ -49,19 +50,11 @@ export const useTemplate = () => {
         const css = createBlankReset();
         WriteFile({ path: path.join(_path, css.name), content: css.content });
 
-        // images/
-        CreateFolder(path.join(_path, 'images'));
+        // pixiview.config.js
+        const view = createPixiViewConfig();
+        WriteFile({ path: path.join(_path, view.name), content: view.content });
 
-        // images/example.png
-        Promise.resolve(
-          DownloadAndSetImage(
-            'https://i.imgur.com/wFkk3SZ.png',
-            path.join(_path, 'images/example.png')
-          )
-        ).then(() => {
-          // execute build command in package.json
-          resolve(installAndExecuteBuildInPackage(_path, { yarn: false }));
-        });
+        resolve(installAndExecuteBuildInPackage(_path, { yarn: false }));
       } else {
         reject({ exists: true });
       }

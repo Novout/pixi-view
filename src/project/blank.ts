@@ -74,17 +74,7 @@ window.addEventListener('resize', () => {
   app.renderer.resize(window.innerWidth, window.innerHeight);
 });
 
-app.loader.add('example', 'images/example.png').load((loader, resources) => {
-
-  const sprite = new PIXI.Sprite(resources.example.texture);
-
-  sprite.x = 50;
-  sprite.y = 50;
-  sprite.width = 150;
-  sprite.height = 150;
-
-  app.stage.addChild(sprite);
-
+app.loader.load((loader, resources) => {
   app.ticker.add(() => {});
 });
 

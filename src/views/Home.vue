@@ -48,6 +48,8 @@ export default defineComponent({
 
     const switchLanguage = (lang: string) => {
       locale.value = lang;
+      config.lang = lang;
+      PathStorageWrite('config', config.$state);
     };
 
     const switchTheme = (_theme: string) => {
@@ -61,7 +63,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      console.log(config.$state.theme);
+      locale.value = config.lang;
       switchTheme(theme.value);
     });
 
