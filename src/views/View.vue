@@ -11,7 +11,7 @@
             scrolling="no"
             frameBorder="0"
         /></pane>
-        <pane size="20">4</pane>
+        <pane size="20"><view-utils /></pane>
       </splitpanes>
     </pane>
     <pane size="30"></pane>
@@ -19,9 +19,11 @@
 </template>
 
 <script lang="ts">
+import ViewUtils from '@/components/view/ViewUtils.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  components: { ViewUtils },
   setup() {}
 });
 </script>

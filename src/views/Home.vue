@@ -32,7 +32,7 @@ import { defineComponent, onMounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useConfigStore } from '@/store/config';
 // @ts-ignore
-import { PathStorageWrite, PathStorageRead } from '@/electron/fs';
+import { PathStorageWrite } from '@/electron/fs';
 import HomeTo from '@/components/home/HomeTo.vue';
 
 export default defineComponent({
@@ -61,6 +61,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
+      console.log(config.$state.theme);
       switchTheme(theme.value);
     });
 

@@ -57,7 +57,8 @@ export default defineComponent({
 <style>
 :root {
   --bg-primary: #f2f2f2;
-  --bg-primary-hover: #d6d6d6;
+  --bg-primary-hover: #ededed;
+  --bg-button: #fa79a4;
   --text-primary: #000;
   --text-shadow: rgb(174, 174, 174);
   --color-1: #e91e63;
@@ -74,6 +75,7 @@ export default defineComponent({
 :root .dark {
   --bg-primary: #141414;
   --bg-primary-hover: #1c1c1c;
+  --bg-button: #e91e63;
   --text-primary: #eee;
   --text-shadow: #e91e63;
   --color-1: #e91e63;
@@ -85,6 +87,20 @@ export default defineComponent({
   --fullh: 100vh;
   --fullb: calc(100vh - 25px);
   --bar: 25px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--bg-primary-hover);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
 }
 
 .bar {

@@ -1,10 +1,13 @@
 const sh = require('shelljs');
 const { exec, execSync } = require('child_process');
 
+import { useLoggerStore } from '@/store/logger';
 import { ExecuteOptions } from '@/utils';
 
 module.exports = {
   installAndExecuteBuildInPackage: (path: string, options: ExecuteOptions) => {
+    const logger = useLoggerStore();
+
     if (options.yarn) {
       sh.cd(path);
       execSync('yarn', (err: any, stdout: any, stderr: any) => {
@@ -38,6 +41,8 @@ module.exports = {
       });
 
       _runtime.stdout.on('data', (data: any) => {
+        logger.emit(data, 'clean', 'cmd');
+
         if (data.includes('watching for file changes...')) {
           const iframe = document.getElementById('view') as HTMLIFrameElement;
           iframe.src = iframe.src;

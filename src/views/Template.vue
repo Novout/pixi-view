@@ -59,8 +59,8 @@ export default defineComponent({
     const router = useRouter();
     const data = reactive({
       project: 'blank' as string,
-      name: 'blank-template' as string,
-      path: context.$state.project.path as string
+      name: t('template.typeName.blank') as string,
+      path: context.project.path as string
     });
 
     const error = reactive({
@@ -69,8 +69,8 @@ export default defineComponent({
     });
 
     watch(data, (n, _prev) => {
-      context.$state.project.path = n.path;
-      PathStorageWrite('config', context.$state);
+      context.project.path = n.path;
+      PathStorageWrite('context', context.$state);
     });
 
     const switchProject = (project: string) => {
