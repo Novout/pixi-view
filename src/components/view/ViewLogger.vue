@@ -26,15 +26,11 @@ export default defineComponent({
     const generics = computed(() => view.generics);
 
     watch(logger, () => {
-      setInterval(() => {
+      setTimeout(() => {
         const log = document.querySelector('#logger');
         (log as HTMLElement).scrollTop = (log as HTMLElement).scrollHeight;
       }, 0);
     });
-
-    setInterval(() => {
-      logger.emit(String(Math.random() * 5));
-    }, 500);
 
     return { events, view, generics };
   }
