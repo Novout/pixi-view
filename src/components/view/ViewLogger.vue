@@ -30,10 +30,6 @@ export default defineComponent({
       (log as HTMLElement).scrollTop = (log as HTMLElement).scrollHeight;
     });
 
-    setInterval(() => {
-      logger.emit(String(Math.random() * 5));
-    }, 1000);
-
     return { events, view, generics };
   }
 });
