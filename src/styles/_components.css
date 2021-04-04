@@ -1,0 +1,44 @@
+.bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: var(--bar);
+  background: var(--color-1);
+}
+
+.bar > img {
+  margin-right: auto;
+  margin-left: 10px;
+}
+
+.drag {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.base {
+  min-height: var(--fullh);
+  background: var(--bg-primary);
+}
+
+.title {
+  flex-grow: 1;
+  margin-left: 1rem;
+  font-family: 'Raleway Normal';
+  font-size: 0.8rem;
+}
+
+.tbase-enter-active,
+.tbase-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.tbase-enter-from,
+.tbase-leave-to {
+  opacity: 0;
+}
