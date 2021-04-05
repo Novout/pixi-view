@@ -1,5 +1,5 @@
 {
-  "name": "pixi-view",
+  "name": "pixiview",
   "author": {
     "name": "Giovane Cardoso",
     "email": "gcnovout@gmail.com",
@@ -10,12 +10,16 @@
   "description": "A interface for pixi.js development",
   "scripts": {
     "build": "yarn icon && vue-cli-service electron:build",
-    "build:cross": "yarn build --linux deb --win nsis",
+    "build:cross": "yarn icon && yarn build --linux deb --win nsis",
     "lint": "vue-cli-service lint --fix && pretty-quick",
-    "d": "pretty-quick && vue-cli-service electron:serve",
+    "d": "yarn pkg:build && pretty-quick && vue-cli-service electron:serve",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "icon": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
-    "postinstall": "electron-builder install-app-deps",
+    "win:pkg:build": "lerna run win:build --stream",
+    "pkg:build": "lerna run build --stream",
+    "pkg:lint": "lerna run lint",
+    "pkg:boot": "lerna bootstrap",
+    "postinstall": "electron-builder install-app-deps && yarn pkg:boot",
     "postuninstall": "electron-builder install-app-deps"
   },
   "main": "background.js",
@@ -24,6 +28,7 @@
     "electron-updater": "^4.3.8",
     "fs-extra": "^9.1.0",
     "iframe-resizer": "^4.3.1",
+    "lerna": "^4.0.0",
     "pinia": "^2.0.0-alpha.10",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
@@ -86,5 +91,8 @@
       "vue-cli-service lint",
       "git add"
     ]
-  }
+  },
+  "workspaces": [
+    "packages/@pixiview/*"
+  ]
 }

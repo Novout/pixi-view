@@ -11,26 +11,12 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env"
-    ],
+    "types": ["webpack-env"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "_/*": [
-        "public/*"
-      ]
+      "@/*": ["src/*"],
+      "_/*": ["public/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost",
-      "es5",
-      "es6",
-      "es7"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost", "es5", "es6", "es7"]
   },
   "include": [
     "src/**/*.ts",
@@ -39,8 +25,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules",
-    "**/_project/**"
-  ]
+  "exclude": ["node_modules", "**/_project/**", "**/packages/**"]
 }

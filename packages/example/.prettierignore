@@ -1,0 +1,5 @@
+build
+dist_electron
+node_modules
+.vscode
+*.js

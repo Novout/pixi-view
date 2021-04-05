@@ -24,6 +24,11 @@ pnpm-debug.log*
 
 #Electron-builder output
 /dist_electron
-build
 
+# Packages
+build
+lib
+
+# Utils
 .vscode
+.idea
