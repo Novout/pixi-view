@@ -30,5 +30,9 @@ export default {
       initial: 'Initial Menu',
       create: 'Create'
     }
+  },
+  view: {
+    logger: 'Logger',
+    inventory: 'Inventory'
   }
 };

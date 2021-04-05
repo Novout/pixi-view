@@ -5,13 +5,13 @@
         @click="view = 'inventory'"
         :class="[view === 'inventory' ? 'utils__bar--active' : 'utils__bar--inative']"
       >
-        Inventário
+        {{ t('view.inventory') }}
       </button>
       <button
         @click="view = 'logger'"
         :class="[view === 'logger' ? 'utils__bar--active' : 'utils__bar--inative']"
       >
-        Logger
+        {{ t('view.logger') }}
       </button>
     </section>
     <section id="logger" class="utils__content">
@@ -22,14 +22,16 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import ViewLogger from '@/components/view/ViewLogger.vue';
 
 export default defineComponent({
   components: { ViewLogger },
   setup() {
     const view = ref('logger');
+    const { t } = useI18n();
 
-    return { view };
+    return { t, view };
   }
 });
 </script>

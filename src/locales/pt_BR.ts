@@ -30,5 +30,9 @@ export default {
       initial: 'Menu Inicial',
       create: 'Criar Projeto'
     }
+  },
+  view: {
+    logger: 'Console',
+    inventory: 'Inventário'
   }
 };

@@ -17,7 +17,7 @@ export const useContextStore = defineStore({
   actions: {
     register() {
       const _path = path.join(this.project.path, this.project.name);
-      console.log(getRootPixiViewConfig(_path));
+      // console.log(getRootPixiViewConfig(_path));
     }
   }
 });
