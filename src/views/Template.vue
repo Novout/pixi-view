@@ -107,11 +107,14 @@ export default defineComponent({
           template
             .createBlankTemplate({ path: data.path, directory: data.name })
             .then(() => {
+              context.project.name = data.name;
               router.push('/view');
             })
             .catch((e: any) => {
               e.create ? (error.create = true) : (error.create = false);
               e.exists ? (error.exists = true) : (error.exists = false);
+
+              console.error(e);
 
               if (!e.create && !e.exists) DeleteFolder(data.path);
             });

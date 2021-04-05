@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { ContentPath } from '@/utils';
 // @ts-ignore
-import { PathExists, WriteFile, DownloadAndSetImage, CreateFolder } from '@/electron/fs';
+import { PathExists, WriteFile } from '@/electron/fs';
 // @ts-ignore
 import { installAndExecuteBuildInPackage, killLocalhost } from '@/electron/sh';
 import {
@@ -23,13 +23,11 @@ export const useTemplate = () => {
         // kill possible process in port
         killLocalhost();
 
-        Promise.resolve(
-          fs.mkdir(_path, (err: any) => {
-            if (err) {
-              return console.error(err);
-            }
-          })
-        );
+        fs.mkdir(_path, (err: any) => {
+          if (err) {
+            return console.error(err);
+          }
+        });
         // index.html
         const html = createBlankHTML();
         WriteFile({ path: path.join(_path, html.name), content: html.content });
@@ -51,7 +49,7 @@ export const useTemplate = () => {
         WriteFile({ path: path.join(_path, css.name), content: css.content });
 
         // pixiview.config.js
-        const view = createPixiViewConfig();
+        const view = createPixiViewConfig({ name: content.directory, port: 4000 });
         WriteFile({ path: path.join(_path, view.name), content: view.content });
 
         resolve(installAndExecuteBuildInPackage(_path, { yarn: false }));

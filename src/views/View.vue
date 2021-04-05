@@ -20,11 +20,17 @@
 
 <script lang="ts">
 import ViewUtils from '@/components/view/ViewUtils.vue';
-import { defineComponent } from 'vue';
+import { useContextStore } from '@/store/context';
+import { defineComponent, onMounted } from 'vue';
 
 export default defineComponent({
   components: { ViewUtils },
-  setup() {}
+  setup() {
+    const context = useContextStore();
+    onMounted(() => {
+      context.register();
+    });
+  }
 });
 </script>
 

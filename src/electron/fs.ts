@@ -49,6 +49,9 @@ module.exports = {
   WriteFile: (item: TemplateMontage) => {
     fs.writeFileSync(item.path, item.content, 'utf8', () => {});
   },
+  ReadFile: (path: string) => {
+    return fs.readFileSync(path);
+  },
   CopyAndPaste: (path: TemplateToPath) => {
     fs.readFile(path.origin, function (err: any, data: any) {
       if (err) throw err;
@@ -86,5 +89,8 @@ module.exports = {
         return console.error(err);
       }
     });
+  },
+  getRootPixiViewConfig: (_path: string) => {
+    return fs.readFileSync(path.join(_path, 'pixiview.config.js'));
   }
 };
