@@ -1,24 +1,15 @@
-# konstanta-engine
+# PIXI View (WIP)
 
-## Project setup
-```
-yarn install
-```
+### This project is in the initial stage of development and is not available for use
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+:ballot_box_with_check: Interface for easy and practical development using Pixi.js.
 
-### Compiles and minifies for production
-```
-yarn build
-```
+![Pixi-View](https://i.imgur.com/k8hdyNR.png)
 
-### Lints and fixes files
-```
-yarn lint
-```
+:snowboarder: Create modern web projects with [Snowpack](https://www.snowpack.dev/)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+:white_check_mark: Packages to facilitate the use of Pixijs resources
+
+:desktop_computer: Control your project without having to write code
+
+:earth_americas: Desktop and Web build application

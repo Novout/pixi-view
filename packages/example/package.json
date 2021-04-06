@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Giovane Cardoso",
   "license": "MIT",
-  "description": "A runner for pixiview utilities",
+  "description": "A example for pixiview",
   "main": "lib/index.amd.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Novout/pixi-factory"
+    "url": "https://github.com/Novout/pixi-view"
   },
   "scripts": {
     "build": "rm -rf ./lib && yarn build",
