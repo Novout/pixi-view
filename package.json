@@ -19,6 +19,7 @@
     "pkg:build": "lerna run build --stream",
     "pkg:lint": "lerna run lint",
     "pkg:boot": "lerna bootstrap",
+    "pkg:publish": "lerna run build && lerna publish",
     "postinstall": "electron-builder install-app-deps && yarn pkg:boot",
     "postuninstall": "electron-builder install-app-deps"
   },

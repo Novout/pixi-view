@@ -1,7 +1,7 @@
-# @pixiview/runner
+# @pixiview/example
 
 ```shell
-npm i @pixiview/runner
+npm i @pixiview/example
 
-yarn add @pixiview/runner
+yarn add @pixiview/example
 ```
