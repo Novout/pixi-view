@@ -1,9 +1,9 @@
 {
-  "name": "@pixiview/runner",
+  "name": "@pixiview/scene",
   "version": "0.1.0",
   "author": "Giovane Cardoso",
   "license": "MIT",
-  "description": "A runner for pixiview utilities",
+  "description": "A example for pixiview",
   "main": "lib/index.amd.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -52,7 +52,6 @@
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "@pixiview/scene": "^0.1.0",
     "pixi.js": "^6.0.2"
   }
 }
