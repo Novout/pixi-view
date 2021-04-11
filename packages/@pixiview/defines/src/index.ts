@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import path from 'path';
 import { ReadJsonFile, WriteJsonFile } from './json';
 
@@ -14,6 +15,10 @@ export default class Defines {
       return new Promise<Record<any, any>>((resolve, reject) => {
         resolve(ReadJsonFile(content));
       });
+    } else {
+      return new Promise<Record<any, any>>((resolve, reject) => {
+        resolve(ReadJsonFile(content));
+      });
     }
   }
 
@@ -24,6 +29,10 @@ export default class Defines {
       throw new Error('@pixiview/defines: not support file extension!');
 
     if (content.match(/([a-zA-Z0-9\s_\\.\-\(\):])+(.json)$/i)) {
+      return new Promise<any>((resolve, reject) => {
+        resolve(WriteJsonFile(content, data));
+      });
+    } else {
       return new Promise<any>((resolve, reject) => {
         resolve(WriteJsonFile(content, data));
       });
