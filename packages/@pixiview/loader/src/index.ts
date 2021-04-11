@@ -1,7 +1,7 @@
 import { Loader as loader } from 'pixi.js';
 import { Callback, TexturesList } from './types';
 
-export default class Loader {
+export class Loader {
   private readonly path: string = 'assets';
 
   private readonly shared: loader = loader.shared;
@@ -14,7 +14,7 @@ export default class Loader {
 
   public load(setup: Callback<void>, textures?: TexturesList) {
     if (!this.__CACHE) {
-      textures.forEach((texture) => {
+      textures?.forEach((texture) => {
         this.shared.add(texture[0], texture[1]);
       });
 
@@ -24,5 +24,7 @@ export default class Loader {
     this.shared.load(setup);
   }
 }
+
+export default new Loader();
 
 export * as Utils from './types';

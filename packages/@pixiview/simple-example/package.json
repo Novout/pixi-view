@@ -1,0 +1,29 @@
+{
+  "name": "@pixiview/simple-example",
+  "author": "guest",
+  "license": "MIT",
+  "version": "0.1.0",
+  "description": "A blank template generate by pixi-view.",
+  "contributors": [
+    "Guest <guest@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guest/blank-template"
+  },
+  "scripts": {
+    "dev": "snowpack dev --polyfill-node"
+  },
+  "keywords": [
+    "pixi",
+    "pixijs"
+  ],
+  "dependencies": {
+    "@pixiview/runner": "^0.1.0",
+    "@pixiview/scene": "^0.1.0",
+    "pixi.js": "^6.0.0"
+  },
+  "devDependencies": {
+    "snowpack": "^3.0.13"
+  }
+}

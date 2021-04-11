@@ -2,6 +2,8 @@ import { RunnerConstructorOptions } from './types';
 import { Scene, Utils as SceneUtils } from '@pixiview/scene';
 export class Runner {
   constructor(options: RunnerConstructorOptions) {
+    this.scenes = new Map();
+    this._register = [];
     this.__RUN = false;
     this.options = options;
 
@@ -41,6 +43,7 @@ export class Runner {
       this.setScene(key);
     }
 
+    this._scene.init({});
     this._scene.render();
     this.__RUN = true;
   }
